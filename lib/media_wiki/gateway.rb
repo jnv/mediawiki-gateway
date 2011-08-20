@@ -202,19 +202,19 @@ module MediaWiki
     end
 
    #This returns the properties for the given page. A hash will be returned.
-   def semantic_properties(page_name)
+   def page_semantic_properties(page_name)
      return nil if @options[:index_page].nil? or @options[:index_page] == ''
 
      encoded_page = URI.escape("[[#{page_name}]]", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")).gsub('%', '-')
 
-     properties = list_semantic_properties.collect{|i| URI.escape(i, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")).gsub('%', '-') }
+     properties = semantic_properties.collect{|i| URI.escape(i, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")).gsub('%', '-') }
      
      uri = URI.parse(@options[:index_page])
      ask_query = "#{encoded_page}/-3F#{properties.join('/-3F')}/limit%3D1/format%3Djson"
 
      uri.query = "title=Special:Ask&x=#{URI.escape(ask_query, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}"
     
-     JSON.parse(open(uri.to_s).read)
+     JSON.parse(open(uri.to_s).read)["items"] rescue nil
    end
 
 
