@@ -611,7 +611,7 @@ describe MediaWiki::Gateway do
       end
 
       it "should list all matching pages in the specified namespaces" do
-        @search.should == ["Sandbox:Search Test", "Book:Search Test"]
+        @search.should =~ ["Sandbox:Search Test", "Book:Search Test"]
       end
 
     end
