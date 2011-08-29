@@ -63,7 +63,8 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rest-client>, [">= 1.3.0"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, ["~> 3.0"])
+      s.add_development_dependency(%q<activemodel>, ["~> 3.0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.6"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sham_rack>, [">= 0"])
