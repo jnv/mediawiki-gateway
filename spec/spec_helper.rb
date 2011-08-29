@@ -1,7 +1,7 @@
 require 'media_wiki'
 
 require 'rr'
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end
 
