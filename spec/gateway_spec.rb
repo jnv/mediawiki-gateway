@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ruby-debug'
 
 require 'sham_rack'
 require 'fake_media_wiki/app'
