@@ -2,7 +2,7 @@ require 'spec_helper'
 
 # Kickstart fake media wiki app
 require 'sham_rack'
-require 'spec/fake_media_wiki/app'
+require 'fake_media_wiki/app'
 $fake_media_wiki = FakeMediaWiki::App.new
 ShamRack.mount($fake_media_wiki, 'dummy-wiki.example')
 
