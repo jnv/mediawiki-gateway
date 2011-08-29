@@ -321,7 +321,7 @@ describe MediaWiki::Gateway do
     describe "when creating a new page" do
 
       before do
-        @page = @gateway.create("A New Page", "Some content")
+        @page = @gateway.create("A New Page", "Some content")[0]
       end
 
       it "should create the page" do
@@ -330,7 +330,6 @@ describe MediaWiki::Gateway do
             <edit new='' result='Success' pageid='8' title='A New Page' oldrevid='0' newrevid='8'/>
           </api>
         XML
-        p @page.to_s
         Hash.from_xml(@page.to_s).should == Hash.from_xml(expected)
       end
 
@@ -341,7 +340,7 @@ describe MediaWiki::Gateway do
       describe "and the 'overwrite' option is set" do
 
         before do
-          @new_page = @gateway.create("Main Page", "Some new content", :summary => "The summary", :overwrite => true)
+          @new_page = @gateway.create("Main Page", "Some new content", :summary => "The summary", :overwrite => true)[0]
         end
 
         it "should overwrite the existing page" do
@@ -371,7 +370,7 @@ describe MediaWiki::Gateway do
 
   describe "#edit" do
     before do
-      @edit_page = @gateway.edit("Main Page", "Some new content")
+      @edit_page = @gateway.edit("Main Page", "Some new content")[0]
     end
 
     it "should overwrite the existing page" do
@@ -395,7 +394,7 @@ describe MediaWiki::Gateway do
 
       before do
         File.stub(:new) { "SAMPLEIMAGEDATA" }
-        @page = @gateway.upload("some/path/sample_image.jpg")
+        @page = @gateway.upload("some/path/sample_image.jpg")[0]
       end
 
       it "should open the file" do
@@ -434,7 +433,7 @@ describe MediaWiki::Gateway do
           @gateway.login("atlasmw", "wombat")
 
           create("Deletable Page", "Some content")
-          @page = @gateway.delete("Deletable Page")
+          @page = @gateway.delete("Deletable Page")[0]
         end
 
         it "should delete the page" do
@@ -675,7 +674,7 @@ describe MediaWiki::Gateway do
 
       before do
         @gateway.login("atlasmw", "wombat")
-        @page = @gateway.import(import_file)
+        @page = @gateway.import(import_file)[0]
       end
 
       it "should import content" do
@@ -704,7 +703,7 @@ describe MediaWiki::Gateway do
     end
 
     before do
-      @page = @gateway.export("Main Page")
+      @page = @gateway.export("Main Page")[0]
     end
 
     it "should return export data for the page" do
