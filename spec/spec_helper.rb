@@ -3,7 +3,8 @@ require 'media_wiki'
 require 'rr'
 RSpec.configure do |config|
   #config.mock_with RR::Adapters::Rspec
-  config.mock_with :rr
+  #config.mock_with :rr
+  config.mock_with :rspec
 end
 
 # :nodoc: Rails 2.3.x: Hash#to_xml is defined in active_support
