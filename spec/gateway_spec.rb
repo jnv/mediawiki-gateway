@@ -3,11 +3,11 @@ require 'spec_helper'
 # Kickstart fake media wiki app
 require 'sham_rack'
 require 'fake_media_wiki/app'
-$fake_media_wiki = FakeMediaWiki::App.new
+$fake_media_wiki = FakeMediaWiki::App.new!
 ShamRack.mount($fake_media_wiki, 'dummy-wiki.example')
 
 describe MediaWiki::Gateway do
-  
+
   before do
     @gateway = MediaWiki::Gateway.new('http://dummy-wiki.example/w/api.php')
     $fake_media_wiki.reset
