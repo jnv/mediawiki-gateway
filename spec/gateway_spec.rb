@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 require 'sham_rack'
@@ -363,6 +364,22 @@ describe MediaWiki::Gateway do
 
       end
 
+    end
+
+    it "should allow create a page with UTF-8 characters in name" do
+      title = "Příliš žluťoučký kůň"
+      expected = <<-XML
+            <api>
+              <edit new='' result='Success' pageid='8' title='#{title}' oldrevid='0' newrevid='8'/>
+            </api>
+      XML
+
+      page = nil
+      lambda do
+        page = @gateway.create(title, "Zvlášť zákeřný učeň s ďolíčky běží podél zóny úlů.")
+      end.should_not raise_error
+
+      Hash.from_xml(page[0].to_s).should == Hash.from_xml(expected)
     end
 
   end
