@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra/base'
-require 'spec/fake_media_wiki/api_pages'
-require 'spec/fake_media_wiki/query_handling'
+require 'fake_media_wiki/api_pages'
+require 'fake_media_wiki/query_handling'
 
 # A simple Rack app that stubs out a web service, for testing.
 
