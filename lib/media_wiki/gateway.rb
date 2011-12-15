@@ -675,7 +675,7 @@ module MediaWiki
         form_data['format'] = 'xml'
         form_data['maxlag'] = @options[:maxlag]
       end
-      log.debug("REQ: #{form_data.inspect}, #{@cookies.inspect}")
+      #log.debug("REQ: #{form_data.inspect}, #{@cookies.inspect}")
       RestClient.post(@wiki_url, form_data, @headers.merge({:cookies => @cookies})) do |response, &block|
         if response.code == 503 and retry_count < @options[:retry_count]
           log.warn("503 Service Unavailable: #{response.body}.  Retry in #{@options[:retry_delay]} seconds.")
